@@ -40,12 +40,12 @@ function Form() {
     const handleClickAway = () => {
         setShowTextfield(false)
         containerRef.current.style.height = '50px'
-        setAddNote(note)
+        setAddNote({ ...note })
         if (addNote.text || addNote.description) {
-            setTodoList((todoList) => [...todoList, addNote])
+            setTodoList((todoList) => [addNote, ...todoList])
             console.log(todoList)
         }
-        console.log(addNote)
+        // console.log(addNote)
     }
     const onTextChange = () => {
         setAddNote({
@@ -64,7 +64,7 @@ function Form() {
                     style={{ marginBottom: 10 }}
                     onChange={(e) => onTextChange(e)}
                     name='name'
-                    value={addNote.heading}
+                    value={addNote.name}
                 />}
                 <TextField
                     placeholder="Take a note..."
@@ -76,7 +76,7 @@ function Form() {
                     onClick={onTextAreaClick}
                     onChange={(e) => onTextChange(e)}
                     name='description'
-                    value={addNote.text}
+                    value={addNote.description}
                 />
 
             </Container>

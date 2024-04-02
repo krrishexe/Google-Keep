@@ -3,6 +3,7 @@ import React from 'react'
 import Typography from '@mui/material/Typography'
 import styled from '@emotion/styled';
 import Form from './Form';
+import Note from './Note';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
     ...theme.mixins.toolbar,
@@ -17,7 +18,7 @@ function Notes() {
                     <DrawerHeader />
                     {/* add this in every route */}
                     <Form />
-
+                    <Note />
                 </Box>
             </div>
         </ThemeProvider>
