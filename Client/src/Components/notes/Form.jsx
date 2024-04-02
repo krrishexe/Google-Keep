@@ -3,6 +3,8 @@ import { useState, useRef, useContext } from 'react';
 
 import { Box, TextField, ClickAwayListener } from '@mui/material';
 import { styled } from '@mui/material/styles';
+import { todoListState } from '../../store/atoms/Todo';
+import { useRecoilState } from 'recoil'
 
 const Container = styled(Box)`
     display: flex;
@@ -14,9 +16,19 @@ const Container = styled(Box)`
     border-radius: 8px;
     min-height: 50px;
     padding: 10px 15px;
+    color: #e0e0e0;
 `
 
+const note = {
+    name: '',
+    description: ''
+}
+
 function Form() {
+
+    const [todoList, setTodoList] = useRecoilState(todoListState)
+    const [addNote, setAddNote] = useState(note)
+
     const [showTextfield, setShowTextfield] = useState(false)
 
     const containerRef = useRef(null)
@@ -28,6 +40,18 @@ function Form() {
     const handleClickAway = () => {
         setShowTextfield(false)
         containerRef.current.style.height = '50px'
+        setAddNote(note)
+        if (addNote.text || addNote.description) {
+            setTodoList((todoList) => [...todoList, addNote])
+            console.log(todoList)
+        }
+        console.log(addNote)
+    }
+    const onTextChange = () => {
+        setAddNote({
+            ...addNote,
+            [event.target.name]: event.target.value
+        })
     }
     return (
         <ClickAwayListener onClickAway={handleClickAway}>
@@ -36,10 +60,11 @@ function Form() {
                     placeholder="Title"
                     variant="standard"
                     InputProps={{ disableUnderline: true }}
-                    style={{ marginBottom: 10, color: '#fff' }}
-                    // onChange={(e) => onTextChange(e)}
-                    name='heading'
-                // value={addNote.heading}
+                    inputProps={{ style: { color: '#fff' } }}
+                    style={{ marginBottom: 10 }}
+                    onChange={(e) => onTextChange(e)}
+                    name='name'
+                    value={addNote.heading}
                 />}
                 <TextField
                     placeholder="Take a note..."
@@ -47,10 +72,11 @@ function Form() {
                     maxRows={Infinity}
                     variant="standard"
                     InputProps={{ disableUnderline: true }}
+                    inputProps={{ style: { color: '#fff' } }}
                     onClick={onTextAreaClick}
-                    // onChange={(e) => onTextChange(e)}
-                    name='text'
-                // value={addNote.text}
+                    onChange={(e) => onTextChange(e)}
+                    name='description'
+                    value={addNote.text}
                 />
 
             </Container>

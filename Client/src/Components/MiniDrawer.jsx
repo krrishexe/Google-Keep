@@ -26,6 +26,7 @@ import AppBar from '@mui/material/AppBar';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Notes from './notes/Notes';
 import DeleteNote from './delete/DeleteNote';
+import ArchivedNotes from './archived/ArchivedNotes';
 
 
 const drawerWidth = 240;
@@ -243,8 +244,8 @@ export default function MiniDrawer() {
                 </Drawer>
                 <Routes>
                     <Route path="/" element={<Notes />} />
-                    <Route path="/about" element={<DeleteNote />} />
-                    <Route path="/contact" element={<h1>Contact</h1>} />
+                    <Route path="/deleted" element={<DeleteNote />} />
+                    <Route path="/archived" element={<ArchivedNotes />} />
 
                 </Routes>
             </Box>
