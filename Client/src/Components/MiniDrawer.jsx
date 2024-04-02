@@ -23,6 +23,10 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import ListComponent from './ListComponent';
 import AppBar from '@mui/material/AppBar';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import Notes from './notes/Notes';
+import DeleteNote from './delete/DeleteNote';
+
 
 const drawerWidth = 240;
 
@@ -143,129 +147,107 @@ export default function MiniDrawer() {
 
 
     return (
-        <Box sx={{ display: 'flex ' }}>
-            <App open={open} style={{ background: '#202124' }} className='border-b border-gray-500'>
-                <Toolbar className='flex justify-between'>
-                    <div className='flex justify-center items-center '>
-                        <IconButton
-                            color="inherit"
-                            onClick={handleDrawer}
-                            edge="start"
-                            sx={{
-                                marginRight: 3,
-                                // marginLeft: 2,
-                            }}
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <img src={logo} alt="" height={'48px'} width={'48px'} style={{ marginRight: '20px' }} />
-                        <Typography variant="h5" noWrap component="div">
-                            Keep
-                        </Typography>
-                    </div>
-                    <Search>
-                        <SearchIconWrapper>
-                            <SearchIcon />
-                        </SearchIconWrapper>
-                        <StyledInputBase
-                            placeholder="Search…"
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </Search>
-                    <div>
-                        <Tooltip title="Refresh">
-                            <IconButton className='icon-button'>
-                                <ReplayIcon className='icon-button' style={{ marginRight: '10px' }} />
+        <Router>
+            <Box sx={{ display: 'flex ' }}>
+                <App open={open} style={{ background: '#202124' }} className='border-b border-gray-500'>
+                    <Toolbar className='flex justify-between'>
+                        <div className='flex justify-center items-center '>
+                            <IconButton
+                                color="inherit"
+                                onClick={handleDrawer}
+                                edge="start"
+                                sx={{
+                                    marginRight: 3,
+                                    // marginLeft: 2,
+                                }}
+                            >
+                                <MenuIcon />
                             </IconButton>
-                        </Tooltip>
-                        <Tooltip title="List View">
-                            <IconButton className='icon-button'>
-                                <ViewStreamIcon className='icon-button' style={{ marginRight: '10px' }} />
-                            </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Settings">
-                            <IconButton className='icon-button'>
-                                <SettingsIcon className='icon-button' style={{ marginRight: '10px' }} />
-                            </IconButton>
-                        </Tooltip>
-                    </div>
-                    <div className='flex'>
-                        <Tooltip title="Google Apps" >
-                            <IconButton >
-                                <AppsIcon style={{ color: '#fff' }} className='mr-4' />
-                            </IconButton>
-                        </Tooltip>
-                        <Box sx={{ flexGrow: 0 }}>
-                            <Tooltip title="Open settings">
-                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar alt="Krish Yadav" src="/static/images/avatar/2.jpg" />
+                            <img src={logo} alt="" height={'48px'} width={'48px'} style={{ marginRight: '20px' }} />
+                            <Typography variant="h5" noWrap component="div">
+                                Keep
+                            </Typography>
+                        </div>
+                        <Search>
+                            <SearchIconWrapper>
+                                <SearchIcon />
+                            </SearchIconWrapper>
+                            <StyledInputBase
+                                placeholder="Search…"
+                                inputProps={{ 'aria-label': 'search' }}
+                            />
+                        </Search>
+                        <div>
+                            <Tooltip title="Refresh">
+                                <IconButton className='icon-button'>
+                                    <ReplayIcon className='icon-button' style={{ marginRight: '10px' }} />
                                 </IconButton>
                             </Tooltip>
-                            <Menu
-                                sx={{ mt: '45px' }}
-                                id="menu-appbar"
-                                anchorEl={anchorElUser}
-                                anchorOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                keepMounted
-                                transformOrigin={{
-                                    vertical: 'top',
-                                    horizontal: 'right',
-                                }}
-                                open={Boolean(anchorElUser)}
-                                onClose={handleCloseUserMenu}
-                            >
-                                {settings.map((setting) => (
-                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                        <Typography textAlign="center">{setting}</Typography>
-                                    </MenuItem>
-                                ))}
-                            </Menu>
-                        </Box>
-                    </div>
-                </Toolbar>
-            </App>
-            <Drawer variant="permanent" open={open} sx={{ background: "#202124" }}>
-                <DrawerHeader style={{ background: '#202124' }}>
-                    <IconButton onClick={handleDrawerClose}>
-                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon className='text-white' />}
-                    </IconButton>
-                </DrawerHeader>
-                {/* <Divider /> */}
-                <ListComponent />
-            </Drawer>
-            <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                <DrawerHeader />
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-                    enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-                    imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-                    Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-                    Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-                    nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-                    leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-                    feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-                    consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                    sapien faucibus et molestie ac.
-                </Typography>
-                <Typography paragraph>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-                    eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-                    neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-                    tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-                    sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                    tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-                    gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-                    et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-                    tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                    eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-                    posuere sollicitudin aliquam ultrices sagittis orci a.
-                </Typography>
+                            <Tooltip title="List View">
+                                <IconButton className='icon-button'>
+                                    <ViewStreamIcon className='icon-button' style={{ marginRight: '10px' }} />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Settings">
+                                <IconButton className='icon-button'>
+                                    <SettingsIcon className='icon-button' style={{ marginRight: '10px' }} />
+                                </IconButton>
+                            </Tooltip>
+                        </div>
+                        <div className='flex'>
+                            <Tooltip title="Google Apps" >
+                                <IconButton >
+                                    <AppsIcon style={{ color: '#fff' }} className='mr-4' />
+                                </IconButton>
+                            </Tooltip>
+                            <Box sx={{ flexGrow: 0 }}>
+                                <Tooltip title="Open settings">
+                                    <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                        <Avatar alt="Krish Yadav" src="/static/images/avatar/2.jpg" />
+                                    </IconButton>
+                                </Tooltip>
+                                <Menu
+                                    sx={{ mt: '45px' }}
+                                    id="menu-appbar"
+                                    anchorEl={anchorElUser}
+                                    anchorOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    keepMounted
+                                    transformOrigin={{
+                                        vertical: 'top',
+                                        horizontal: 'right',
+                                    }}
+                                    open={Boolean(anchorElUser)}
+                                    onClose={handleCloseUserMenu}
+                                >
+                                    {settings.map((setting) => (
+                                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                            <Typography textAlign="center">{setting}</Typography>
+                                        </MenuItem>
+                                    ))}
+                                </Menu>
+                            </Box>
+                        </div>
+                    </Toolbar>
+                </App>
+                <Drawer variant="permanent" open={open} sx={{ background: "#202124" }}>
+                    <DrawerHeader style={{ background: '#202124' }}>
+                        <IconButton onClick={handleDrawerClose}>
+                            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon className='text-white' />}
+                        </IconButton>
+                    </DrawerHeader>
+                    {/* <Divider /> */}
+                    <ListComponent />
+                </Drawer>
+                <Routes>
+                    <Route path="/" element={<Notes />} />
+                    <Route path="/about" element={<DeleteNote />} />
+                    <Route path="/contact" element={<h1>Contact</h1>} />
+
+                </Routes>
             </Box>
-        </Box>
+        </Router>
     );
 }
