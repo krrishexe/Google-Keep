@@ -1,9 +1,10 @@
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./Note.css"
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { IconButton } from '@mui/material';
 import { todos } from '../../store/selectors/Todos';
 import { useRecoilValue } from 'recoil';
+import Notemap from './Notemap';
 
 // const todoList = [
 //     { id: 'c1', icon: '1', title: 'Winter', description: 'Winter has so much to offer - creative activities' },
@@ -22,6 +23,7 @@ function Note() {
     useEffect(() => {
         if (todoList.length > 0) {
             setExpandedNote(todoList[0].id);
+            console.log(todoList)
         }
     }, [todoList]);
 
@@ -37,30 +39,7 @@ function Note() {
             </div>
         </div>)
             :
-            (<div className="wrapper">
-                <div className="container">
-                    {todoList.map(note => (
-                        <>
-                            <input
-                                type="radio"
-                                name="slide"
-                                id={note.id}
-                                checked={expandedNote === note.id}
-                                onChange={() => handleNoteClick(note.id)}
-                            />
-                            <label htmlFor={note.id} className="card">
-                                <div className="row">
-                                    <div className="icon">{note.icon}</div>
-                                    <div className="description">
-                                        <h4>{note.title}</h4>
-                                        <p>{note.description}</p>
-                                    </div>
-                                </div>
-                            </label>
-                        </>
-                    ))}
-                </div>
-            </div>)
+            <Notemap todoList={todoList} expandedNote={expandedNote} handleNoteClick={handleNoteClick} />
 
     )
 }

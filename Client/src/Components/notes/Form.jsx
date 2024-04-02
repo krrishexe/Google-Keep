@@ -48,7 +48,7 @@ function Form() {
         if (addNote.text || addNote.description) {
             setIcon(icon+1)
             setTodoList((todoList) => [addNote, ...todoList])
-            console.log(todoList)
+            // console.log(todoList)
         }
         // console.log(addNote)
     }
