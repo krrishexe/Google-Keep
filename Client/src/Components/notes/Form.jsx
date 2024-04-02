@@ -5,6 +5,7 @@ import { Box, TextField, ClickAwayListener } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { todoListState } from '../../store/atoms/Todo';
 import { useRecoilState } from 'recoil'
+import { v4 as uuid } from 'uuid'
 
 const Container = styled(Box)`
     display: flex;
@@ -20,6 +21,8 @@ const Container = styled(Box)`
 `
 
 const note = {
+    id: '',
+    icon:'',
     name: '',
     description: ''
 }
@@ -27,7 +30,8 @@ const note = {
 function Form() {
 
     const [todoList, setTodoList] = useRecoilState(todoListState)
-    const [addNote, setAddNote] = useState(note)
+    const [icon,setIcon] = useState(1)
+    const [addNote, setAddNote] = useState({ ...note, id: uuid(),icon: icon})
 
     const [showTextfield, setShowTextfield] = useState(false)
 
@@ -40,8 +44,9 @@ function Form() {
     const handleClickAway = () => {
         setShowTextfield(false)
         containerRef.current.style.height = '50px'
-        setAddNote({ ...note })
+        setAddNote({ ...note,id: uuid()})
         if (addNote.text || addNote.description) {
+            setIcon(icon+1)
             setTodoList((todoList) => [addNote, ...todoList])
             console.log(todoList)
         }
@@ -49,7 +54,7 @@ function Form() {
     }
     const onTextChange = () => {
         setAddNote({
-            ...addNote,
+            ...addNote,icon:icon,
             [event.target.name]: event.target.value
         })
     }

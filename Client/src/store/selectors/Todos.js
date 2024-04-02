@@ -1,7 +1,7 @@
 import { selector } from "recoil";
 import { todoListState } from "../atoms/Todo";
 
-const todos = selector({
+export const todos = selector({
     key: 'todos',
     get: ({get}) => {
         const todos = get(todoListState);
