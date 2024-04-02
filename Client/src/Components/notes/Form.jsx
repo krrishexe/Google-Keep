@@ -12,35 +12,49 @@ const Container = styled(Box)`
     border-color: #e0e0e0;
     width: 600px;
     border-radius: 8px;
-    min-height: 30px;
+    min-height: 50px;
     padding: 10px 15px;
 `
 
 function Form() {
-    return (
-        <Container>
-            <TextField
-                placeholder="Title"
-                variant="standard"
-                InputProps={{ disableUnderline: true }}
-                style={{ marginBottom: 10, color: '#fff' }}
-                // onChange={(e) => onTextChange(e)}
-                name='heading'
-            // value={addNote.heading}
-            />
-            <TextField
-                placeholder="Take a note..."
-                multiline
-                maxRows={Infinity}
-                variant="standard"
-                InputProps={{ disableUnderline: true }}
-                // onClick={onTextAreaClick}
-                // onChange={(e) => onTextChange(e)}
-                name='text'
-            // value={addNote.text}
-            />
+    const [showTextfield, setShowTextfield] = useState(false)
 
-        </Container>
+    const containerRef = useRef(null)
+
+    const onTextAreaClick = () => {
+        setShowTextfield(true)
+        containerRef.current.style.height = '90px'
+    }
+    const handleClickAway = () => {
+        setShowTextfield(false)
+        containerRef.current.style.height = '50px'
+    }
+    return (
+        <ClickAwayListener onClickAway={handleClickAway}>
+            <Container ref={containerRef} className='border text-white'>
+                {showTextfield && <TextField
+                    placeholder="Title"
+                    variant="standard"
+                    InputProps={{ disableUnderline: true }}
+                    style={{ marginBottom: 10, color: '#fff' }}
+                    // onChange={(e) => onTextChange(e)}
+                    name='heading'
+                // value={addNote.heading}
+                />}
+                <TextField
+                    placeholder="Take a note..."
+                    multiline
+                    maxRows={Infinity}
+                    variant="standard"
+                    InputProps={{ disableUnderline: true }}
+                    onClick={onTextAreaClick}
+                    // onChange={(e) => onTextChange(e)}
+                    name='text'
+                // value={addNote.text}
+                />
+
+            </Container>
+        </ClickAwayListener>
     )
 }
 
