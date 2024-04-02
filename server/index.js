@@ -2,14 +2,17 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDb = require('./db/connectDb');
+const router = require('./routes/Todo.route')
 
 const app = express();
-dotenv.config({ path: './' });
+dotenv.config();
 const PORT = process.env.PORT || 5000;
 
 
 app.use(express.json());
 app.use(cors());
+
+app.use('/api/todo',router)
 
 app.get('/', (req, res) => {
     res.send('API is running...');
