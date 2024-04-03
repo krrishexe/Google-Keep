@@ -244,7 +244,7 @@ export default function MiniDrawer() {
                 </Drawer>
                 <Routes>
                     <Route path="/" element={<Notes />} />
-                    <Route path="/deleted" element={<DeleteNote />} />
+                    <Route path="/bin" element={<DeleteNote />} />
                     <Route path="/archived" element={<ArchivedNotes />} />
 
                 </Routes>

@@ -4,31 +4,16 @@ import ArchiveIcon from '@mui/icons-material/Archive';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { deletedNotes } from '../../store/atoms/DeletedNotes';
-import { archiveNotes } from "../../store/atoms/ArchiveNotes"
+
 import { todoListState } from "../../store/atoms/Todo"
 
-function Notemap({ todoList, expandedNote, handleNoteClick }) {
-
-    const setTodoList = useSetRecoilState(todoListState)
-    const [archivedTodo, setArchivedTodo] = useRecoilValue(archiveNotes)
-    const [deletedTodo, setDeletedTodo] = useRecoilValue(deletedNotes)
-
-    const handleAddArchive = (note) => {
-        const updatedNote = todoList.filter((note) => note.id !== expandedNote)
-        setTodoList(updatedNote)
-        setArchivedTodo([note, ...archivedTodo])
-    }
-
-    const handleAddDelete = (note) => {
-        const updatedNote = todoList.filter((note) => note.id !== expandedNote)
-        setTodoList(updatedNote)
-        setDeletedTodo([note, ...deletedTodo])
-    }
+function NoteDeletedMap() {
+    const deletedTodo = useRecoilValue(deletedNotes)
 
     return (
         <div className="wrapper">
             <div className="container">
-                {todoList.map(note => (
+                {deletedTodo.map(note => (
                     <>
                         <input
                             type="radio"
@@ -62,4 +47,4 @@ function Notemap({ todoList, expandedNote, handleNoteClick }) {
     )
 }
 
-export default Notemap
+export default NoteDeletedMap

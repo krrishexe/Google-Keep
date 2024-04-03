@@ -6,11 +6,6 @@ import { todos } from '../../store/selectors/Todos';
 import { useRecoilValue } from 'recoil';
 import Notemap from './Notemap';
 
-// const todoList = [
-//     { id: 'c1', icon: '1', title: 'Winter', description: 'Winter has so much to offer - creative activities' },
-//     { id: 'c2', icon: '2', title: 'Digital Technology', description: 'Gets better every day - stay tuned' },
-//     // add more todoList as needed
-// ];
 
 function Note() {
 
@@ -40,6 +35,7 @@ function Note() {
         </div>)
             :
             <Notemap todoList={todoList} expandedNote={expandedNote} handleNoteClick={handleNoteClick} />
+            //yaha notemap ki jgeh , deletednote
 
     )
 }

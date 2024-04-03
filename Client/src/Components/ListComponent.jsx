@@ -11,12 +11,13 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import EditIcon from '@mui/icons-material/Edit';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-
+import { Link } from 'react-router-dom';
 
 const listItems = [
     {
         text: 'Notes',
         icon: <LightbulbIcon />,
+        link: '/'
     },
     {
         text: 'Reminders',
@@ -29,10 +30,12 @@ const listItems = [
     {
         text: 'Archive',
         icon: <ArchiveIcon />,
+        link: '/archived'
     },
     {
         text: 'Bin',
         icon: <DeleteOutlineIcon />,
+        link: '/bin'
     },
 
 ]
@@ -43,25 +46,27 @@ function ListComponent() {
             <List style={{ background: '#202124', height: '1224px' }} >
                 {listItems.map((text, index) => (
                     <ListItem key={text.text} disablePadding sx={{ display: 'block' }}>
-                        <ListItemButton
-                            sx={{
-                                minHeight: 48,
-                                justifyContent: open ? 'initial' : 'center',
-                                px: 2.5,
-                            }}
-                        >
-                            <ListItemIcon
+                        <Link to={text.link}>
+                            <ListItemButton
                                 sx={{
-                                    minWidth: 0,
-                                    mr: open ? 3 : 'auto',
-                                    justifyContent: 'center',
-                                    color: open ? 'white' : '#e2e2e5',
+                                    minHeight: 48,
+                                    justifyContent: open ? 'initial' : 'center',
+                                    px: 2.5,
                                 }}
                             >
-                                {text.icon}
-                            </ListItemIcon>
-                            <ListItemText primary={text.text} sx={{ opacity: open ? 1 : 0, color: '#e2e2e5' }} className='icon-button' />
-                        </ListItemButton>
+                                <ListItemIcon
+                                    sx={{
+                                        minWidth: 0,
+                                        mr: open ? 3 : 'auto',
+                                        justifyContent: 'center',
+                                        color: open ? 'white' : '#e2e2e5',
+                                    }}
+                                >
+                                    {text.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={text.text} sx={{ opacity: open ? 1 : 0, color: '#e2e2e5' }} className='icon-button' />
+                            </ListItemButton>
+                        </Link>
                     </ListItem>
                 ))}
             </List>
