@@ -18,7 +18,6 @@ function Note() {
     useEffect(() => {
         if (todoList.length > 0) {
             setExpandedNote(todoList[0].id);
-            console.log(todoList)
         }
     }, [todoList]);
 
@@ -35,7 +34,6 @@ function Note() {
         </div>)
             :
             <Notemap todoList={todoList} expandedNote={expandedNote} handleNoteClick={handleNoteClick} />
-            //yaha notemap ki jgeh , deletednote
 
     )
 }

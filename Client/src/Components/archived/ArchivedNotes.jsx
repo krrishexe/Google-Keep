@@ -1,8 +1,7 @@
 import { Box, ThemeProvider, createTheme } from '@mui/material'
-import React from 'react'
-import Typography from '@mui/material/Typography'
 import styled from '@emotion/styled';
 import NoteArchivedMap from './NoteArchivedMap';
+
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({

@@ -1,5 +1,5 @@
 import { IconButton, circularProgressClasses } from '@mui/material'
-import React from 'react'
+import { useState } from 'react'
 import ArchiveIcon from '@mui/icons-material/Archive';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
@@ -12,6 +12,12 @@ function Notemap({ todoList, expandedNote, handleNoteClick }) {
     const setTodoList = useSetRecoilState(todoListState)
     const [archivedTodo, setArchivedTodo] = useRecoilState(archiveNotes)
     const [deletedTodo, setDeletedTodo] = useRecoilState(deletedNotes)
+    const [currentPage, setCurrentPage] = useState(1);
+
+    const notesPerPage = 6;
+    const indexOfLastNote = currentPage * notesPerPage;
+    const indexOfFirstNote = indexOfLastNote - notesPerPage;
+    const currentNotes = todoList.slice(indexOfFirstNote, indexOfLastNote);
 
     const handleAddArchive = (note) => {
         const updatedNote = todoList.filter((note) => note.id !== expandedNote)
@@ -27,9 +33,9 @@ function Notemap({ todoList, expandedNote, handleNoteClick }) {
     }
 
     return (
-        <div className="wrapper">
+        <div className="wrapper flex flex-col">
             <div className="container">
-                {todoList.map(note => (
+                {currentNotes.map(note => (
                     <>
                         <input
                             type="radio"
@@ -59,6 +65,14 @@ function Notemap({ todoList, expandedNote, handleNoteClick }) {
                     </>
                 ))}
             </div>
+            {todoList.length > notesPerPage && <div className='mt-10'>
+                <button className='p-3 mr-10 border rounded-lg disabled:bg-gray-700 text-gray-400' onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+                    &#8592; Previous
+                </button>
+                <button className='p-3 border rounded-lg disabled:bg-gray-700 text-gray-400' onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === Math.ceil(todoList.length / notesPerPage)}>
+                    Next &#8594;
+                </button>
+            </div>}
         </div>
     )
 }

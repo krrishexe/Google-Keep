@@ -8,7 +8,7 @@ import { archiveNotes } from '../../store/atoms/ArchiveNotes';
 import UnarchiveIcon from '@mui/icons-material/Unarchive';
 import { todoListState } from '../../store/atoms/Todo';
 import { deletedNotes } from '../../store/atoms/DeletedNotes';
-
+import "../notes/Note.css"
 
 function NoteArchivedMap() {
     const archivedTodo = useRecoilValue(archiveNotes)
@@ -38,7 +38,6 @@ function NoteArchivedMap() {
     useEffect(() => {
         if (archivedTodo.length > 0) {
             setExpandedNote(archivedTodo[0].id);
-            console.log(archivedTodo)
         }
     }, [archivedTodo])
     return (
