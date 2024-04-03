@@ -5,7 +5,6 @@ import styled from '@emotion/styled';
 import { deletedNotes } from '../../store/atoms/DeletedNotes';
 import { useSetRecoilState } from 'recoil';
 import NoteDeletedMap from './NoteDeletedMap';
-import Note from '../notes/Note';
 
 const DrawerHeader = styled('div')(({ theme }) => ({
     ...theme.mixins.toolbar,
@@ -21,7 +20,7 @@ function DeleteNote() {
                 <Box component="main" sx={{ flexGrow: 1, p: 3, width: '98vw', textAlign: 'center' }}>
                     <DrawerHeader />
                     {/* add this in every route */}
-                    <Note />
+                    <NoteDeletedMap />
 
                 </Box>
             </div>

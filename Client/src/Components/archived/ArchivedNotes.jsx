@@ -2,6 +2,7 @@ import { Box, ThemeProvider, createTheme } from '@mui/material'
 import React from 'react'
 import Typography from '@mui/material/Typography'
 import styled from '@emotion/styled';
+import NoteArchivedMap from './NoteArchivedMap';
 
 
 const DrawerHeader = styled('div')(({ theme }) => ({
@@ -15,7 +16,7 @@ function ArchivedNotes() {
                 <Box component="main" sx={{ flexGrow: 1, p: 3, width: '98vw', textAlign: 'center' }}>
                     <DrawerHeader />
                     {/* add this in every route */}
-                    Archived Notes
+                    <NoteArchivedMap />
 
                 </Box>
             </div>
