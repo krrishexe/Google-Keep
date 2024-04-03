@@ -5,20 +5,35 @@ import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { deletedNotes } from '../../store/atoms/DeletedNotes';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
+import RestoreIcon from '@mui/icons-material/Restore';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
+import { todoListState } from '../../store/atoms/Todo';
 
 
 function NoteDeletedMap() {
     const deletedTodo = useRecoilValue(deletedNotes)
+    const setDeletedTodo = useSetRecoilState(deletedNotes)
+    const setTodoList = useSetRecoilState(todoListState)
     const [expandedNote, setExpandedNote] = useState(deletedTodo[0]?.id);
 
     const handleNoteClick = (id) => {
         setExpandedNote(id);
     };
 
+    const handleRestore = (note) => {
+        const updatedNote = deletedTodo.filter((note) => note.id !== expandedNote)
+        setDeletedTodo(updatedNote)
+        setTodoList(prevArr => [note, ...prevArr])
+    }
+
+    const handlePermanentDelete = (note) => {
+        const updatedNote = deletedTodo.filter((note) => note.id !== expandedNote)
+        setDeletedTodo(updatedNote)
+    }
+
     useEffect(() => {
         if (deletedTodo.length > 0) {
             setExpandedNote(deletedTodo[0].id);
-            console.log(deletedTodo)
         }
     }, [deletedTodo])
 
@@ -53,14 +68,14 @@ function NoteDeletedMap() {
                                             <h4>{note.name}</h4>
                                             <p>{note.description}</p>
                                         </div>
-                                        {/* <div className='icon mr-4'>
-                                    <IconButton onClick={() => handleAddArchive(note)}>
-                                        <ArchiveIcon fontSize='small' style={{ color: '#fff' }} />
+                                        <div className='icon mr-4'>
+                                    <IconButton onClick={() => handleRestore(note)}>
+                                        <RestoreIcon fontSize='small' style={{ color: '#fff' }} />
                                     </IconButton>
-                                    <IconButton onClick={() => handleAddDelete(note)}>
-                                        <DeleteOutlineIcon fontSize='small' style={{ color: '#fff' }} />
+                                    <IconButton onClick={() => handlePermanentDelete(note)}>
+                                        <DeleteForeverIcon fontSize='small' style={{ color: '#fff' }} />
                                     </IconButton>
-                                </div> */}
+                                </div>
                                     </div>
                                 </label>
                             </>

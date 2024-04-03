@@ -2,18 +2,38 @@ import { IconButton, circularProgressClasses } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import ArchiveIcon from '@mui/icons-material/Archive';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import LightbulbIcon from '@mui/icons-material/Lightbulb';
 import { archiveNotes } from '../../store/atoms/ArchiveNotes';
+import UnarchiveIcon from '@mui/icons-material/Unarchive';
+import { todoListState } from '../../store/atoms/Todo';
+import { deletedNotes } from '../../store/atoms/DeletedNotes';
 
 
 function NoteArchivedMap() {
     const archivedTodo = useRecoilValue(archiveNotes)
-    const [expandedNote, setExpandedNote] = useState(archivedTodo[0]?.id);
+    const todoList = useRecoilValue(todoListState)
+    const deletedTodo = useRecoilValue(deletedNotes)
+    const setTodoList = useSetRecoilState(todoListState)
+    const setDeletedTodo = useSetRecoilState(deletedNotes)
+    const setArchivedTodo = useSetRecoilState(archiveNotes)
 
+    const [expandedNote, setExpandedNote] = useState(archivedTodo[0]?.id);
     const handleNoteClick = (id) => {
         setExpandedNote(id);
     };
+
+    const handleAddUnarchive = (note) => {
+        const updatedNote = archivedTodo.filter((note) => note.id !== expandedNote)
+        setArchivedTodo(updatedNote)
+        setTodoList(prevArr => [note, ...prevArr])
+    }
+
+    const handleAddDelete = (note) => {
+        const updatedNote = archivedTodo.filter((note) => note.id !== expandedNote)
+        setArchivedTodo(updatedNote)
+        setDeletedTodo([note, ...deletedTodo])
+    }
 
     useEffect(() => {
         if (archivedTodo.length > 0) {
@@ -51,14 +71,14 @@ function NoteArchivedMap() {
                                         <h4>{note.name}</h4>
                                         <p>{note.description}</p>
                                     </div>
-                                    {/* <div className='icon mr-4'>
-                            <IconButton onClick={() => handleAddArchive(note)}>
-                                <ArchiveIcon fontSize='small' style={{ color: '#fff' }} />
-                            </IconButton>
-                            <IconButton onClick={() => handleAddDelete(note)}>
-                                <DeleteOutlineIcon fontSize='small' style={{ color: '#fff' }} />
-                            </IconButton>
-                        </div> */}
+                                    <div className='icon mr-4'>
+                                        <IconButton onClick={() => handleAddUnarchive(note)}>
+                                            <UnarchiveIcon fontSize='small' style={{ color: '#fff' }} />
+                                        </IconButton>
+                                        <IconButton onClick={() => handleAddDelete(note)}>
+                                            <DeleteOutlineIcon fontSize='small' style={{ color: '#fff' }} />
+                                        </IconButton>
+                                    </div>
                                 </div>
                             </label>
                         </div>
