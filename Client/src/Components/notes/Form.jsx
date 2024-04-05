@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useRef, useContext } from 'react';
+import { useState, useRef, useEffect } from 'react';
 
 import { Box, TextField, ClickAwayListener } from '@mui/material';
 import { styled } from '@mui/material/styles';
@@ -21,12 +21,12 @@ const Container = styled(Box)`
 `
 const imgArray = [
     'https://www.gstatic.com/keep/backgrounds/video_dark_0609.svg',
+    'https://www.gstatic.com/keep/backgrounds/grocery_dark_0609.svg',
     'https://www.gstatic.com/keep/backgrounds/celebration_dark_0714.svg',
-    'https://www.gstatic.com/keep/backgrounds/travel_dark_0609.svg',
     'https://www.gstatic.com/keep/backgrounds/places_dark_0609.svg',
     'https://www.gstatic.com/keep/backgrounds/notes_dark_0714.svg',
+    'https://www.gstatic.com/keep/backgrounds/travel_dark_0609.svg',
     'https://www.gstatic.com/keep/backgrounds/recipe_dark_0609.svg',
-    'https://www.gstatic.com/keep/backgrounds/grocery_dark_0609.svg'
 ]
 const note = {
     id: '',
@@ -55,6 +55,7 @@ function Form() {
         setShowTextfield(false)
         containerRef.current.style.height = '50px'
         setAddNote({ ...note, id: uuid() })
+        localStorage.setItem('notes', JSON.stringify(todoList))
         if (addNote.text || addNote.description) {
             setIcon(icon + 1)
             setImg(imgArray[icon])

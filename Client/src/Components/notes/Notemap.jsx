@@ -14,6 +14,7 @@ function Notemap({ todoList, expandedNote, handleNoteClick }) {
     const [deletedTodo, setDeletedTodo] = useRecoilState(deletedNotes)
     const [currentPage, setCurrentPage] = useState(1);
 
+
     const notesPerPage = 6;
     const indexOfLastNote = currentPage * notesPerPage;
     const indexOfFirstNote = indexOfLastNote - notesPerPage;
@@ -31,9 +32,9 @@ function Notemap({ todoList, expandedNote, handleNoteClick }) {
         setDeletedTodo([note, ...deletedTodo])
         console.log(deletedTodo)
     }
-    useEffect(()=>{
+    useEffect(() => {
         console.log(JSON.parse(localStorage.getItem('notes')))
-    },[deletedTodo, todoList])
+    }, [deletedTodo, todoList])
 
     return (
         <div className="wrapper flex flex-col">
@@ -50,7 +51,7 @@ function Notemap({ todoList, expandedNote, handleNoteClick }) {
 
                         <label htmlFor={note.id} className="card" style={{ backgroundImage: `url(${note.img})` }}>
                             <div className="row">
-                                <div className="icon">{note.icon}</div>
+                                {/* <div className="icon">{note.icon}</div> */}
                                 <div className="description container-top-left">
                                     <h4>{note.name}</h4>
                                     <p>{note.description}</p>
@@ -69,10 +70,10 @@ function Notemap({ todoList, expandedNote, handleNoteClick }) {
                 ))}
             </div>
             {todoList.length > notesPerPage && <div className='mt-10'>
-                <button className='p-3 mr-10 border rounded-lg disabled:bg-gray-700 text-gray-400' onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
+                <button className='p-3 mr-10  rounded-lg disabled:bg-gray-700 text-gray-400' onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
                     &#8592; Previous
                 </button>
-                <button className='p-3 border rounded-lg disabled:bg-gray-700 text-gray-400' onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === Math.ceil(todoList.length / notesPerPage)}>
+                <button className='p-3  rounded-lg disabled:bg-gray-700 text-gray-400' onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === Math.ceil(todoList.length / notesPerPage)}>
                     Next &#8594;
                 </button>
             </div>}
