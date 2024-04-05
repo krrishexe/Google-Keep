@@ -20,14 +20,6 @@ const listItems = [
         link: '/'
     },
     {
-        text: 'Reminders',
-        icon: <NotificationsIcon />,
-    },
-    {
-        text: 'Edit Labels',
-        icon: <EditIcon />,
-    },
-    {
         text: 'Archive',
         icon: <ArchiveIcon />,
         link: '/archived'

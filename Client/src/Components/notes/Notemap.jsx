@@ -101,14 +101,15 @@ function Notemap({ todoList, expandedNote, handleNoteClick }) {
                     </>
                 ))}
                 <Dialog open={editDialogOpen} onClose={() => setEditDialogOpen(false)}>
-                    <DialogTitle style={{ background: '#565758' }} className='text-white'>Edit Note</DialogTitle>
-                    <DialogContent >
-                        <DialogContentText style={{ marginTop: '10px' }}>
+                    <DialogTitle style={{ background: '#37383a', borderTop:'1px solid white'}} className='text-white'>Edit Note</DialogTitle>
+                    <DialogContent style={{background: '#37383a',color:'white'}} >
+                        <DialogContentText style={{ marginTop: '10px', color:'white'}}>
                             Please enter the new title and description for the note.
                         </DialogContentText>
                         <TextField
-                            style={{ marginTop: '10px' }}
+                            style={{ marginTop: '10px', color:'white'}}
                             autoFocus
+                            variant='filled'
                             margin="normal"
                             name="name"
                             label="Title"
@@ -116,20 +117,33 @@ function Notemap({ todoList, expandedNote, handleNoteClick }) {
                             fullWidth
                             value={editedNote?.name}
                             onChange={handleNoteChange}
+                            InputProps={{
+                                style: { color: 'white' }
+                            }}
+                            InputLabelProps={{
+                                style: { color: 'white' }
+                            }}
                         />
                         <TextField
                             margin="dense"
+                            variant='filled'
                             name="description"
                             label="Description"
                             type="text"
                             fullWidth
                             value={editedNote?.description}
                             onChange={handleNoteChange}
+                            InputProps={{
+                                style: { color: 'white' }
+                            }}
+                            InputLabelProps={{
+                                style: { color: 'white' }
+                            }}
                         />
                     </DialogContent>
-                    <DialogActions>
-                        <Button onClick={() => setEditDialogOpen(false)}>Cancel</Button>
-                        <Button onClick={handleEditSubmit}>Save</Button>
+                    <DialogActions style={{background: '#37383a',borderBottom:'1px solid white'}}>
+                        <Button style={{color:'#fff'}} onClick={() => setEditDialogOpen(false)}>Cancel</Button>
+                        <Button style={{color:'#fff'}} onClick={handleEditSubmit}>Save</Button>
                     </DialogActions>
                 </Dialog>
             </div>

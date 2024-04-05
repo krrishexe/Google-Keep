@@ -54,7 +54,7 @@ function NoteArchivedMap() {
             <div className="wrapper">
                 <div className="container">
                     {archivedTodo.map(note => (
-                        <div key={note.icon}>
+                        <>
                             <input
                                 type="radio"
                                 name="slide"
@@ -80,7 +80,7 @@ function NoteArchivedMap() {
                                     </div>
                                 </div>
                             </label>
-                        </div>
+                        </>
                     ))}
                 </div>
             </div>
