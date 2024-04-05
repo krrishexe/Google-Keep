@@ -32,6 +32,7 @@ function NoteDeletedMap() {
     }
 
     useEffect(() => {
+        console.log(deletedTodo)
         if (deletedTodo.length > 0) {
             setExpandedNote(deletedTodo[0].id);
         }
@@ -44,7 +45,7 @@ function NoteDeletedMap() {
                     <IconButton>
                         <LightbulbIcon className='text-5xl icon-button' style={{ fontSize: '7rem', marginBottom: '20px' }} />
                     </IconButton>
-                    <h3 className='text-2xl' style={{ color: '#91989d', fontFamily: '' }}>Notes you add appear here</h3>
+                    <h3 className='text-2xl' style={{ color: '#91989d', fontFamily: '' }}>Deleted Notes appear here</h3>
                 </div>
             </div>
         </div>) :
@@ -61,7 +62,7 @@ function NoteDeletedMap() {
                                     onChange={() => handleNoteClick(note.id)}
                                 />
 
-                                <label htmlFor={note.id} className="card">
+                                <label htmlFor={note.id} className="card" style={{ backgroundImage: `url(${note.img})` }}>
                                     <div className="row">
                                         <div className="icon">{note.icon}</div>
                                         <div className="description container-top-left">

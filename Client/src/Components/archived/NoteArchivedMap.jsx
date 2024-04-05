@@ -12,7 +12,7 @@ import "../notes/Note.css"
 
 function NoteArchivedMap() {
     const archivedTodo = useRecoilValue(archiveNotes)
-    const todoList = useRecoilValue(todoListState)
+    // const todoList = useRecoilValue(todoListState)
     const deletedTodo = useRecoilValue(deletedNotes)
     const setTodoList = useSetRecoilState(todoListState)
     const setDeletedTodo = useSetRecoilState(deletedNotes)
@@ -47,7 +47,7 @@ function NoteArchivedMap() {
                     <IconButton>
                         <LightbulbIcon className='text-5xl icon-button' style={{ fontSize: '7rem', marginBottom: '20px' }} />
                     </IconButton>
-                    <h3 className='text-2xl' style={{ color: '#91989d', fontFamily: '' }}>Notes you add appear here</h3>
+                    <h3 className='text-2xl' style={{ color: '#91989d', fontFamily: '' }}>Archived notes appear here</h3>
                 </div>
             </div>
         </div>) : (
@@ -63,7 +63,7 @@ function NoteArchivedMap() {
                                 onChange={() => handleNoteClick(note.id)}
                             />
 
-                            <label htmlFor={note.id} className="card">
+                            <label htmlFor={note.id} className="card" style={{ backgroundImage: `url(${note.img})` }}>
                                 <div className="row">
                                     <div className="icon">{note.icon}</div>
                                     <div className="description container-top-left">

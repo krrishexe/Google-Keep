@@ -19,19 +19,29 @@ const Container = styled(Box)`
     padding: 10px 15px;
     color: #e0e0e0;
 `
-
+const imgArray = [
+    'https://www.gstatic.com/keep/backgrounds/video_dark_0609.svg',
+    'https://www.gstatic.com/keep/backgrounds/celebration_dark_0714.svg',
+    'https://www.gstatic.com/keep/backgrounds/travel_dark_0609.svg',
+    'https://www.gstatic.com/keep/backgrounds/places_dark_0609.svg',
+    'https://www.gstatic.com/keep/backgrounds/notes_dark_0714.svg',
+    'https://www.gstatic.com/keep/backgrounds/recipe_dark_0609.svg',
+    'https://www.gstatic.com/keep/backgrounds/grocery_dark_0609.svg'
+]
 const note = {
     id: '',
-    icon:'',
+    icon: '',
     name: '',
-    description: ''
+    description: '',
+    img: ''
 }
 
 function Form() {
 
     const [todoList, setTodoList] = useRecoilState(todoListState)
-    const [icon,setIcon] = useState(1)
-    const [addNote, setAddNote] = useState({ ...note, id: uuid(),icon: icon})
+    const [icon, setIcon] = useState(1)
+    const [img, setImg] = useState(imgArray[icon - 1])
+    const [addNote, setAddNote] = useState({ ...note, id: uuid(), icon: icon, img: img })
 
     const [showTextfield, setShowTextfield] = useState(false)
 
@@ -44,17 +54,18 @@ function Form() {
     const handleClickAway = () => {
         setShowTextfield(false)
         containerRef.current.style.height = '50px'
-        setAddNote({ ...note,id: uuid()})
+        setAddNote({ ...note, id: uuid() })
         if (addNote.text || addNote.description) {
-            setIcon(icon+1)
+            setIcon(icon + 1)
+            setImg(imgArray[icon])
             setTodoList((todoList) => [addNote, ...todoList])
-            // console.log(todoList)
+            console.log(todoList)
         }
         // console.log(addNote)
     }
     const onTextChange = () => {
         setAddNote({
-            ...addNote,icon:icon,
+            ...addNote, icon: icon, img: img,
             [event.target.name]: event.target.value
         })
     }

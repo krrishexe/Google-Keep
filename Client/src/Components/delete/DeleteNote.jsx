@@ -12,7 +12,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 function DeleteNote() {
 
-    const setDeletedNotes = useSetRecoilState(deletedNotes)
+    // const setDeletedNotes = useSetRecoilState(deletedNotes)
 
     return (
         <ThemeProvider theme={createTheme()}>

@@ -1,5 +1,5 @@
 import { IconButton, circularProgressClasses } from '@mui/material'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ArchiveIcon from '@mui/icons-material/Archive';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
@@ -31,6 +31,9 @@ function Notemap({ todoList, expandedNote, handleNoteClick }) {
         setDeletedTodo([note, ...deletedTodo])
         console.log(deletedTodo)
     }
+    useEffect(()=>{
+        console.log(JSON.parse(localStorage.getItem('notes')))
+    },[deletedTodo, todoList])
 
     return (
         <div className="wrapper flex flex-col">
@@ -45,7 +48,7 @@ function Notemap({ todoList, expandedNote, handleNoteClick }) {
                             onChange={() => handleNoteClick(note.id)}
                         />
 
-                        <label htmlFor={note.id} className="card">
+                        <label htmlFor={note.id} className="card" style={{ backgroundImage: `url(${note.img})` }}>
                             <div className="row">
                                 <div className="icon">{note.icon}</div>
                                 <div className="description container-top-left">
