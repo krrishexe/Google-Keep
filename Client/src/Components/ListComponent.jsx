@@ -11,7 +11,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import EditIcon from '@mui/icons-material/Edit';
 import ArchiveIcon from '@mui/icons-material/Archive';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 const listItems = [
     {
@@ -38,7 +38,13 @@ function ListComponent() {
             <List style={{ background: '#202124', height: '1224px' }} >
                 {listItems.map((text, index) => (
                     <ListItem key={text.text} disablePadding sx={{ display: 'block' }}>
-                        <Link to={text.link}>
+                        <NavLink
+                            exact
+                            to={text.link}
+                            activeStyle={{
+                                color:'yellow'
+                            }}
+                        >
                             <ListItemButton
                                 sx={{
                                     minHeight: 48,
@@ -58,7 +64,7 @@ function ListComponent() {
                                 </ListItemIcon>
                                 <ListItemText primary={text.text} sx={{ opacity: open ? 1 : 0, color: '#e2e2e5' }} className='icon-button' />
                             </ListItemButton>
-                        </Link>
+                        </NavLink>
                     </ListItem>
                 ))}
             </List>

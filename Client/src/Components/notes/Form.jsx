@@ -77,7 +77,8 @@ function Form() {
                     placeholder="Title"
                     variant="standard"
                     InputProps={{ disableUnderline: true }}
-                    inputProps={{ style: { color: '#fff' } }}
+                    inputProps={{ style: { color: '#fff',fontFamily: "Montserrat Alternates",                   fontWight: '300',
+                    fontStyle: 'normal' } }}
                     style={{ marginBottom: 10 }}
                     onChange={(e) => onTextChange(e)}
                     name='name'
@@ -89,7 +90,8 @@ function Form() {
                     maxRows={Infinity}
                     variant="standard"
                     InputProps={{ disableUnderline: true }}
-                    inputProps={{ style: { color: '#fff' } }}
+                    inputProps={{ style: { color: '#fff',fontFamily: "Montserrat Alternates",                   fontWight: '300',
+                    fontStyle: 'normal' } }}
                     onClick={onTextAreaClick}
                     onChange={(e) => onTextChange(e)}
                     name='description'

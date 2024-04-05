@@ -81,7 +81,7 @@ function Notemap({ todoList, expandedNote, handleNoteClick }) {
                         <label htmlFor={note.id} className="card" style={{ backgroundImage: `url(${note.img})` }}>
                             <div className="row">
                                 {/* <div className="icon">{note.icon}</div> */}
-                                <div className="description container-top-left">
+                                <div className="description">
                                     <h4>{note.name}</h4>
                                     <p>{note.description}</p>
                                 </div>

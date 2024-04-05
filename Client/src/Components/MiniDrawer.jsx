@@ -10,7 +10,7 @@ import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import logo from "../assets/icons8-google-keep-48.png"
+import logo from "../assets/icons8-diary-100.png"
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import ReplayIcon from '@mui/icons-material/Replay';
@@ -165,8 +165,11 @@ export default function MiniDrawer() {
                                 <MenuIcon />
                             </IconButton>
                             <img src={logo} alt="" height={'48px'} width={'48px'} style={{ marginRight: '20px' }} />
-                            <Typography variant="h5" noWrap component="div">
-                                Keep
+                            <Typography variant="h5" noWrap component="div" style={{
+                                fontFamily: "Montserrat Alternates", fontWeight: 700,
+                                fontStyle: 'normal'
+                            }}>
+                                Journal
                             </Typography>
                         </div>
                         <Search>
