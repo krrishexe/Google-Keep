@@ -27,6 +27,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Notes from './notes/Notes';
 import DeleteNote from './delete/DeleteNote';
 import ArchivedNotes from './archived/ArchivedNotes';
+import {useEffect} from 'react';
 
 
 const drawerWidth = 240;
@@ -122,6 +123,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
+
+
+
+
 export default function MiniDrawer() {
     const theme = useTheme();
     const [open, setOpen] = React.useState(false);
@@ -145,7 +150,6 @@ export default function MiniDrawer() {
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
     };
-
 
     return (
         <Router>

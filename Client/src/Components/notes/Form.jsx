@@ -55,7 +55,6 @@ function Form() {
         setShowTextfield(false)
         containerRef.current.style.height = '50px'
         setAddNote({ ...note, id: uuid() })
-        localStorage.setItem('notes', JSON.stringify(todoList))
         if (addNote.text || addNote.description) {
             setIcon(icon + 1)
             setImg(imgArray[icon])
